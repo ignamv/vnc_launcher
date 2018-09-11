@@ -92,7 +92,7 @@ def main_gui():
     from qtpy.QtWidgets import QInputDialog, QApplication, QMessageBox
     import sys
 
-    QApplication(sys.argv)
+    _app = QApplication(sys.argv)
 
     hostname = prompt_hostname_gui()
     if not hostname:
