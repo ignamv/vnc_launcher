@@ -118,7 +118,7 @@ def main_gui():
             return
         display = int(display)
     try:
-        print hostname, display
+        print('Connecting to {}:{}'.format(hostname, display))
         connect_viewer(hostname, display)
     except subprocess.CalledProcessError as e:
         QMessageBox.critical(None, 'Error connecting to display', e.output)
