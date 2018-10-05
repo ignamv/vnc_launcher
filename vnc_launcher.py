@@ -1,5 +1,6 @@
 import re
 import subprocess
+import os
 
 
 def list_displays(hostname):
@@ -53,8 +54,11 @@ def create_display(hostname):
 
 def connect_viewer(hostname, display):
     """Launch vncviewer to specified hostname and display number"""
-    subprocess.check_output(['vncviewer', '{}:{}'.format(hostname, display)],
-                            stderr=subprocess.STDOUT)
+    vncpasswd = os.path.expanduser('~/.vnc/passwd')
+    cmd = ['vncviewer', '{}:{}'.format(hostname, display)]
+    if os.path.exists(vncpasswd):
+        cmd.extend(['-PasswordFile', vncpasswd])
+    subprocess.check_output(cmd, stderr=subprocess.STDOUT)
 
 
 def main_cmdline():
